@@ -9,9 +9,11 @@ class Validate
 {
     public $cardNumber;
 
-    public function validateCardNumber($cardNumber)
+    public function validateCardNumber($cardNumber): int
     {
         $validationCardNumberSum = 0;
+
+        $cardNumber = str_replace(" ", '', $cardNumber);
 
         if (strlen($cardNumber) == 16) {
             for ($i = 0; $i < 16; $i++) {
@@ -51,16 +53,19 @@ class Validate
 
     }
 
-    public function validateCardIssuer($cardNumber)
+    public function validateCardIssuer($cardNumber): int
     {
+
+        $cardNumber = str_replace(" ", '', $cardNumber);
+
         $mir = preg_match('/\b(2)([0-9]+)\b/', $cardNumber);
         $amex = preg_match('/\b(34|37)([0-9]+)\b/', $cardNumber);
         $jcb = preg_match('/\b(31|35)([0-9]+)\b/', $cardNumber);
         $dc = preg_match('/\b(30|36|38)([0-9]+)\b/', $cardNumber);
-        $visa = preg_match('/\b(4)([0-9]+)\b/', $cardNumber);
-        $master = preg_match('/\b(51|52|53|54|55)([0-9]+)\b/', $cardNumber);
-        $maestro = preg_match('/\b(50|56|57|58|63|67)([0-9]+)\b/', $cardNumber);
-        $china = preg_match('/\b(62)([0-9]+)\b/', $cardNumber);
+        $visa = preg_match('/\b(4|14)([0-9]+)\b/', $cardNumber);
+        $master = preg_match('/\b(51|52|53|54|55|62|67)([0-9]+)\b/', $cardNumber);
+        $maestro = preg_match('/\b(50|56|57|58|63)([0-9]+)\b/', $cardNumber);
+        $china = preg_match('/\b(64)([0-9]+)\b/', $cardNumber);
         $discover = preg_match('/\b(60)([0-9]+)\b/', $cardNumber);
         $uec = preg_match('/\b(7)([0-9]+)\b/', $cardNumber);
 
@@ -95,7 +100,7 @@ class Validate
             print_r(str_repeat("#", strlen("NOT DEFIND")+2) . "\n");
             print_r("#" . "NOT_DEFIND" . "#" . "\n");
             print_r(str_repeat("#", strlen("NOT DEFIND")+2) . "\n");
-            return 0;
+            $flag = 0;
         } else {
             for ($i = 0; $i < 10; $i++) {
                 if ($binaryCartsValue[$i] == 1) {
@@ -103,9 +108,9 @@ class Validate
                     print_r(str_repeat("#", strlen($cartName[$i]) + 2) . "\n");
                     print_r("#" . $cartName[$i] . "#" . "\n");
                     print_r(str_repeat("#", strlen($cartName[$i]) + 2) . "\n");
-                    return 1;
+                    $flag = 1;
                 } else continue;
             }
         }
-    }
+    return $flag;}
 }
