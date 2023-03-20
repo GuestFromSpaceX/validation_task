@@ -3,8 +3,7 @@
 ###### *Мой старший разработчик сказал, что тут нет хардкода, так что я довольный его сюда добавляю.*
 
 Гиф кода. 
-![Ермолинский_валидность_карты](https://user-images.githubusercontent.com/100123572/220138239-0cec5e96-ebd2-43ab-a412-13dd691a1cc9.gif)
-
+![Screencast_from_20 03 2023_12_13_02](https://user-images.githubusercontent.com/100123572/226296811-3a792054-0093-4ebc-be39-d70a0f21ff6e.gif)
 
 
 PHP код.
